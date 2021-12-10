@@ -46,7 +46,7 @@ const Waiting = () => {
 	}, []);
 	return (
 		<main className={sharedStyles.main} style={{ opacity: fade ? 1 : 0 }}>
-			<Partition customStyle={{ width: "75%", margin: "0 auto" }}>
+			<Partition customStyle={{ width: "65%", margin: "0 auto" }}>
 				<Part customStyle={{ flex: 1 }}>
 					<section style={{ margin: "0 auto" }}>
 						<h1 className={sharedStyles.title}>
