@@ -86,7 +86,11 @@ const Waiting = () => {
 						>
 							Gain access
 						</button>
-						{errors && <h1 className={styles.error}>{errors}</h1>}
+						{errors && (
+							<div className={sharedStyles.pop_card} style={{ color: "red" }}>
+								{errors}
+							</div>
+						)}
 					</section>
 				</Part>
 			</Partition>

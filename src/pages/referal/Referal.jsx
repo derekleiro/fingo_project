@@ -12,8 +12,13 @@ import { colors } from "../../constants/colors";
 
 const Referal = () => {
 	const [fade, setFade] = useState(false);
+	const [copied, setCopied] = useState(false);
 
 	const data = ["James Orengo", "Mercy Waiguru"];
+
+	const handleCopy = () => {
+		setCopied(true);
+	};
 
 	useEffect(() => {
 		let unmounted = false;
@@ -51,7 +56,10 @@ const Referal = () => {
 								data.map((val, index) => {
 									return (
 										<li key={index}>
-											<b>{val}</b> claimed this referal
+											<span style={{ fontFamily: "Poppins Medium" }}>
+												{val}
+											</span>{" "}
+											claimed this referal
 										</li>
 									);
 								})}
@@ -72,11 +80,17 @@ const Referal = () => {
 							className={styles.code_box}
 							style={{ background: colors.accent }}
 						>
-							#getin123
-							<button>
-								<img src={copy_icon} alt="copy code" />
+							#<span id="ref">getin123</span>
+							<button onClick={handleCopy}>
+								<img src={copy_icon} alt="Copy referal code" />
 							</button>
 						</div>
+
+						{copied && (
+							<div className={sharedStyles.pop_card}>
+								Successfully copied code
+							</div>
+						)}
 					</section>
 				</Part>
 			</Partition>
