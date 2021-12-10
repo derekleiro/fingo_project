@@ -17,6 +17,17 @@ const Referal = () => {
 	const data = ["James Orengo", "Mercy Waiguru"];
 
 	const handleCopy = () => {
+		var range = document.createRange();
+
+		// Selects text on the "ref" node
+		range.selectNode(document.getElementById("ref"));
+		window.getSelection().removeAllRanges();
+		window.getSelection().addRange(range);
+
+		// Adds it to clipboard
+		document.execCommand("copy");
+		window.getSelection().removeAllRanges();
+
 		setCopied(true);
 	};
 
