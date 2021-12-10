@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Waiting from "./pages/waiting/Waiting";
+import Referal from "./pages/referal/Referal";
+
+import "./App.css";
+import "./assets/fonts/fonts.css";
+
+const App = () => {
+	return (
+		<div className="App">
+			<Routes>
+				<Route path="/" element={<Waiting />} exact />
+				<Route path="/refer" element={<Referal />} />
+			</Routes>
+		</div>
+	);
+};
 
 export default App;

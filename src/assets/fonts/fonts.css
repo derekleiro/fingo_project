@@ -1,0 +1,11 @@
+@font-face {
+	font-family: "Poppins Medium";
+	font-display: swap;
+	src: url(Poppins-Medium.woff) format("woff");
+}
+
+@font-face {
+	font-family: "Poppins Light";
+	font-display: swap;
+	src: url(Poppins-Light.woff) format("woff");
+}
