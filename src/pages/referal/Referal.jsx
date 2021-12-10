@@ -70,7 +70,8 @@ const Referal = () => {
 											<span style={{ fontFamily: "Poppins Medium" }}>
 												{val}
 											</span>{" "}
-											claimed this referal
+											claimed this <br />
+											referal
 										</li>
 									);
 								})}
