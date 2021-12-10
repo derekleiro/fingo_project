@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./waiting.module.css";
 import sharedStyles from "../../shared/shared-styles.module.css";
@@ -10,9 +10,43 @@ import Part from "../../shared/components/part/Part";
 import { colors } from "../../constants/colors";
 
 const Waiting = () => {
+	const navigate = useNavigate();
+
+	const [text, setText] = useState("");
+	const [errors, setErrors] = useState("");
+	const [fade, setFade] = useState(false);
+
+	const handleInput = (e) => {
+		setText(e.target.value);
+		setErrors("");
+	};
+
+	const validateInput = () => {
+		const REFERAL = "getin123";
+
+		if (text === REFERAL) {
+			navigate("/refer");
+		} else {
+			setErrors("Invalid invite");
+		}
+	};
+
+	useEffect(() => {
+		let unmounted = false;
+
+		setTimeout(() => {
+			if (!unmounted) {
+				setFade(true);
+			}
+		}, 50);
+
+		return () => {
+			unmounted = true;
+		};
+	}, []);
 	return (
-		<main className={sharedStyles.main}>
-			<Partition customStyle={{ width: "80%", margin: "0 auto" }}>
+		<main className={sharedStyles.main} style={{ opacity: fade ? 1 : 0 }}>
+			<Partition customStyle={{ width: "75%", margin: "0 auto" }}>
 				<Part customStyle={{ flex: 1 }}>
 					<section style={{ margin: "0 auto" }}>
 						<h1 className={sharedStyles.title}>
@@ -39,19 +73,20 @@ const Waiting = () => {
 						</h1>
 						<div>
 							<input
+								onChange={handleInput}
 								className={styles.input}
 								type="text"
 								placeholder="Enter referal code"
 							/>
 						</div>
-						<Link to="/refer">
-							<button
-								className={styles.btn}
-								style={{ background: colors.main }}
-							>
-								Gain access
-							</button>
-						</Link>
+						<button
+							className={styles.btn}
+							style={{ background: colors.main }}
+							onClick={validateInput}
+						>
+							Gain access
+						</button>
+						{errors && <h1 className={styles.error}>{errors}</h1>}
 					</section>
 				</Part>
 			</Partition>

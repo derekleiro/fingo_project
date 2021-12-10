@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./referal.module.css";
 import sharedStyles from "../../shared/shared-styles.module.css";
@@ -11,11 +11,27 @@ import copy_icon from "../../assets/icons/copy_icon.jpg";
 import { colors } from "../../constants/colors";
 
 const Referal = () => {
+	const [fade, setFade] = useState(false);
+
 	const data = ["James Orengo", "Mercy Waiguru"];
 
+	useEffect(() => {
+		let unmounted = false;
+
+		setTimeout(() => {
+			if (!unmounted) {
+				setFade(true);
+			}
+		}, 50);
+
+		return () => {
+			unmounted = true;
+		};
+	}, []);
+
 	return (
-		<main className={sharedStyles.main}>
-			<Partition customStyle={{ width: "80%", margin: "0 auto" }}>
+		<main className={sharedStyles.main} style={{ opacity: fade ? 1 : 0 }}>
+			<Partition customStyle={{ width: "75%", margin: "0 auto" }}>
 				<Part customStyle={{ flex: 1 }}>
 					<section style={{ margin: "0 auto" }}>
 						<h1 className={sharedStyles.title}>
